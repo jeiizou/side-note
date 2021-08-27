@@ -1,0 +1,36 @@
+{
+	"compilerOptions": {
+		"module": "ESNext",
+		"target": "es6",
+		"outDir": "out",
+		"jsx": "react",
+		"lib": [
+			"es6",
+			"DOM"
+		],
+		"moduleResolution": "Node",
+		"baseUrl": ".",
+		"sourceMap": true,
+		"rootDir": "src",
+		// 是否输出d.ts
+		"declaration": false,
+		"allowSyntheticDefaultImports": true,
+		"strict": true, /* enable all strict type-checking options */
+		/* Additional Checks */
+		// "noImplicitReturns": true, /* Report error when not all code paths in function return a value. */
+		// "noFallthroughCasesInSwitch": true, /* Report errors for fallthrough cases in switch statement. */
+		// "noUnusedParameters": true,  /* Report errors on unused parameters. */
+		"paths": {
+			"@/*": [
+				"./src/*"
+			],
+			"@page-content/*": [
+				"./src/views/content/*"
+			]
+		}
+	},
+	"exclude": [
+		"node_modules",
+		".vscode-test",
+	]
+}

@@ -1,0 +1,299 @@
+{
+	"name": "side-note",
+	"displayName": "Side Note",
+	"description": "fix local directory as notebook on sidebar",
+	"author": "jeiizou@qq.com",
+	"repository": "https://jeii.coding.net/public/utils/fly-snow/git/files",
+	"publisher": "Jeii",
+	"version": "0.0.2",
+	"icon": "assets/images/logo.png",
+	"engines": {
+		"vscode": "^1.58.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"*"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"configuration": {
+			"type": "object",
+			"title": "SideNote",
+			"properties": {
+				"SideNote.gitDirOnWin": {
+					"type": "string",
+					"description": "Local Repo Path(win)"
+				},
+				"SideNote.gitDirOnUnix": {
+					"type": "string",
+					"description": "Local Repo Path(unix)"
+				},
+				"SideNote.noRemote": {
+					"type": "boolean",
+					"default": false,
+					"description": "Skip Remote Check"
+				},
+				"SideNote.ignoreFiles": {
+					"type": "array",
+					"default": [
+						"node_modules",
+						"package.json",
+						".git",
+						".vscode",
+						"*.lock"
+					],
+					"description": "ignore file on file-tree"
+				}
+			}
+		},
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "SideNote",
+					"title": "SideNote",
+					"icon": "./assets/images/sidebar.png"
+				}
+			]
+		},
+		"views": {
+			"SideNote": [
+				{
+					"id": "SideNote.workspace",
+					"name": "workspace"
+				},
+				{
+					"id": "SideNote.command",
+					"name": "command"
+				}
+			]
+		},
+		"commands": [
+			{
+				"command": "SideNote.openFile",
+				"title": "openFile",
+				"category": "SideNote"
+			},
+			{
+				"command": "SideNote.newFile",
+				"title": "newFile",
+				"category": "SideNote",
+				"icon": "$(new-file)"
+			},
+			{
+				"command": "SideNote.newDirectory",
+				"title": "newDirectory",
+				"category": "SideNote",
+				"icon": "$(file-directory-create)"
+			},
+			{
+				"command": "SideNote.refreshFile",
+				"title": "refreshFile",
+				"category": "SideNote",
+				"icon": "$(refresh)"
+			},
+			{
+				"command": "SideNote.refreshComman",
+				"title": "refreshComman",
+				"category": "SideNote",
+				"icon": "$(refresh)"
+			},
+			{
+				"command": "SideNote.rename",
+				"title": "rename",
+				"category": "SideNote"
+			},
+			{
+				"command": "SideNote.delete",
+				"title": "delete",
+				"category": "SideNote"
+			},
+			{
+				"command": "SideNote.initRepo",
+				"title": "Repo: init",
+				"category": "SideNote"
+			},
+			{
+				"command": "SideNote.resetRepo",
+				"title": "Repo: reset",
+				"category": "SideNote"
+			},
+			{
+				"command": "SideNote.syncRepo",
+				"title": "Repo: sync",
+				"category": "SideNote"
+			},
+			{
+				"command": "SideNote.openRepo",
+				"title": "Repo: open",
+				"category": "SideNote"
+			},
+			{
+				"command": "SideNote.setRemoteRepo",
+				"title": "Repo: set remote addr",
+				"category": "SideNote"
+			},
+			{
+				"command": "SideNote.runScript",
+				"title": "Command: run",
+				"category": "SideNote"
+			},
+			{
+				"command": "SideNote.editComman",
+				"title": "Command: edit",
+				"category": "SideNote"
+			},
+			{
+				"command": "SideNote.setIgnoreInGit",
+				"title": "Repo: ignore on git panel",
+				"category": "SideNote"
+			},
+			{
+				"command": "SideNote.editConfig",
+				"title": "Open Extension Config",
+				"category": "SideNote"
+			}
+		],
+		"menus": {
+			"view/title": [
+				{
+					"command": "SideNote.newFile",
+					"when": "view == SideNote.workspace",
+					"group": "navigation"
+				},
+				{
+					"command": "SideNote.newDirectory",
+					"when": "view == SideNote.workspace",
+					"group": "navigation"
+				},
+				{
+					"command": "SideNote.refreshFile",
+					"when": "view == SideNote.workspace",
+					"group": "navigation"
+				},
+				{
+					"command": "SideNote.resetRepo",
+					"when": "view == SideNote.workspace",
+					"category": "SideNote"
+				},
+				{
+					"command": "SideNote.openRepo",
+					"when": "view == SideNote.workspace",
+					"category": "SideNote"
+				},
+				{
+					"command": "SideNote.setIgnoreInGit",
+					"when": "view == SideNote.workspace",
+					"category": "SideNote"
+				},
+				{
+					"command": "SideNote.setRemoteRepo",
+					"when": "view == SideNote.workspace",
+					"category": "SideNote"
+				},
+				{
+					"command": "SideNote.editConfig",
+					"when": "view == SideNote.workspace",
+					"category": "SideNote"
+				},
+				{
+					"command": "SideNote.syncRepo",
+					"when": "view == SideNote.workspace",
+					"category": "SideNote"
+				},
+				{
+					"command": "SideNote.refreshComman",
+					"when": "view == SideNote.command",
+					"group": "navigation"
+				},
+				{
+					"command": "SideNote.editComman",
+					"when": "view == SideNote.command"
+				}
+			],
+			"view/item/context": [
+				{
+					"command": "SideNote.newFile",
+					"when": "view == SideNote.workspace"
+				},
+				{
+					"command": "SideNote.newDirectory",
+					"when": "view == SideNote.workspace"
+				},
+				{
+					"command": "SideNote.rename",
+					"when": "view == SideNote.workspace"
+				},
+				{
+					"command": "SideNote.delete",
+					"when": "view == SideNote.workspace"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "yarn run build",
+		"pretest": "yarn run build",
+		"test": "node ./out/test/runTest.js",
+		"build": "yarn build:app",
+		"build:app": "cross-env NODE_ENV=production && rollup -c ./scripts/rollup.app.js",
+		"dev:app": "cross-env NODE_ENV=development && rollup -c ./scripts/rollup.app.js -w",
+		"build:view": "cross-env NODE_ENV=production && rollup -c ./scripts/rollup.view.js",
+		"dev:view": "cross-env NODE_ENV=development && rollup -c ./scripts/rollup.view.js -w"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.14.8",
+		"@babel/preset-env": "^7.14.9",
+		"@babel/preset-react": "^7.14.5",
+		"@chaos-kit/format-prettier": "^0.0.1",
+		"@rollup/plugin-alias": "^3.1.5",
+		"@rollup/plugin-babel": "^5.3.0",
+		"@rollup/plugin-commonjs": "^16.0.0",
+		"@rollup/plugin-node-resolve": "^13.0.4",
+		"@rollup/plugin-replace": "^3.0.0",
+		"@types/fs-extra": "^9.0.4",
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^5.2.7",
+		"@types/mustache": "^4.1.2",
+		"@types/node": "^12.11.7",
+		"@types/ramda": "^0.27.44",
+		"@types/react": "^17.0.15",
+		"@types/react-dom": "^17.0.9",
+		"@types/vscode": "^1.58.0",
+		"@types/vscode-webview": "^1.57.0",
+		"antd": "^4.16.10",
+		"cross-env": "^7.0.3",
+		"less": "^4.1.1",
+		"mocha": "^6.2.2",
+		"postcss": "^8.3.6",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
+		"recoil": "^0.4.0",
+		"rollup": "^2.55.1",
+		"rollup-plugin-clear": "^2.0.7",
+		"rollup-plugin-copy": "^3.4.0",
+		"rollup-plugin-external-globals": "^0.6.1",
+		"rollup-plugin-html": "^0.2.1",
+		"rollup-plugin-livereload": "^2.0.0",
+		"rollup-plugin-postcss": "^4.0.0",
+		"rollup-plugin-terser": "^7.0.2",
+		"rollup-plugin-typescript2": "^0.29.0",
+		"tslint": "^5.20.0",
+		"typescript": "^3.6.4",
+		"vscode-test": "^1.2.2"
+	},
+	"dependencies": {
+		"@ant-design/icons": "^4.6.3",
+		"chalk": "^4.1.0",
+		"chokidar": "^3.4.3",
+		"dayjs": "^1.10.6",
+		"execa": "^5.0.0",
+		"fs-extra": "^9.0.1",
+		"mustache": "^4.2.0",
+		"open": "^8.2.1",
+		"ramda": "^0.27.1",
+		"simple-git": "^2.24.0"
+	},
+	"prettier": "@chaos-kit/format-prettier"
+}
