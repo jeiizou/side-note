@@ -6,9 +6,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
-- [ ] optimization: active extension by view&command
-- [ ] optimization: More obvious tips for repo sync
-- [ ] optimization: the tip for delete file will be more quiet
+- [x] optimization: More obvious tips for repo sync
+- [x] optimization: the tip for delete file will be more quiet
 - [ ] feature: support glob mode match for ignore files
 - [ ] feature: support chinese language mode
 - [ ] feature: support search key in repo

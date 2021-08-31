@@ -103,32 +103,43 @@ export async function checkRepoStatus() {
  * sync repo
  */
 export async function syncRepo() {
-    let dir = setting.getGitDir();
-    if (!dir) {
-        return ProjectStatus.noLocalRepo;
-    }
-    let git = Git.create(dir);
-    if (!(await git.isInit())) {
-        return ProjectStatus.noGitInit;
-    }
-    if (!(await git.hasRemote())) {
-        return ProjectStatus.noRemote;
-    }
+    vscode.window.withProgress(
+        {
+            location: vscode.ProgressLocation.Notification,
+            title: 'sync repo...',
+        },
+        async () => {
+            let dir = setting.getGitDir();
+            if (!dir) {
+                logger.warn('No Local Repo!');
+                return;
+            }
+            let git = Git.create(dir);
+            if (!(await git.isInit())) {
+                logger.warn('Repo not init git');
+                return;
+            }
+            if (!(await git.hasRemote())) {
+                logger.warn('no remote');
+                return;
+            }
 
-    try {
-        let res = await git.sync();
-        if (res) {
-            return ProjectStatus.initFinished;
-        } else {
-            logger.showPanel();
-            logger.logError(JSON.stringify(res));
-            throw Error('Unknown Error');
-        }
-    } catch (error) {
-        logger.showPanel();
-        logger.logError(JSON.stringify(error));
-        throw Error('Sync Error');
-    }
+            try {
+                let res = await git.sync();
+                if (res) {
+                    return ProjectStatus.initFinished;
+                } else {
+                    logger.showPanel();
+                    logger.logError(JSON.stringify(res));
+                    throw Error('Unknown Error');
+                }
+            } catch (error) {
+                logger.showPanel();
+                logger.logError(JSON.stringify(error));
+                throw Error('Sync Error');
+            }
+        },
+    );
 }
 
 /**

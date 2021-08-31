@@ -6,8 +6,10 @@ import { initRepo } from '@/commands/repo';
 import { createFileTree } from '@/trees/file-tree';
 import { createCommandTree } from '@/trees/command-tree';
 import registerCommand from '@/commands';
+import { codeName } from './common/const';
 
 export async function activate(context: vscode.ExtensionContext) {
+    console.log(`[${codeName}]: activated`);
     // save context
     Context.saveContext(context);
 

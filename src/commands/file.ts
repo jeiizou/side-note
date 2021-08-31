@@ -116,11 +116,6 @@ export async function deleteTarget(targetFile?: FileData) {
     if (!targetFile || !targetFile.path) {
         return;
     }
-    let answer = await prompt.confirm(`Delete ${targetFile.name}?`, 'sure');
-    if (!answer) {
-        return;
-    }
-
     await fs.remove(path.resolve(targetFile.path));
     refreshFileTree();
 }
